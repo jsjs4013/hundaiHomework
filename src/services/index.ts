@@ -1,4 +1,4 @@
-import { Category } from "../types/api";
+import { Category, Faq } from "../types/api";
 
 const BASE_URL = "/api";
 
@@ -23,8 +23,15 @@ async function get<T>(
 }
 
 export const api = {
-  getCategory: (tab: Category.CategoryType) =>
+  getCategory: ({ tab }: Category.Request) =>
     get<Category.Response>("/category", { tab }),
+  getFaq: ({ tab, limit, offset, faqCategoryID }: Faq.Request) =>
+    get<Faq.Response>("/faq", {
+      tab,
+      limit: limit.toString(),
+      offset: offset.toString(),
+      faqCategoryID: faqCategoryID ?? "",
+    }),
 };
 
 /**

@@ -1,6 +1,11 @@
-export const CategoryType = {
+export const TabType = {
   USAGE: "USAGE",
   CONSULT: "CONSULT",
+} as const;
+
+export type TabType = (typeof TabType)[keyof typeof TabType];
+
+export const CategoryType = {
   COUNSELING: "COUNSELING",
   PRODUCT: "PRODUCT",
   CONTRACT: "CONTRACT",
@@ -14,6 +19,10 @@ export const CategoryType = {
 } as const;
 
 export type CategoryType = (typeof CategoryType)[keyof typeof CategoryType];
+
+export type Request = {
+  tab: TabType;
+};
 
 export type Response = {
   categoryID: CategoryType;
