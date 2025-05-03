@@ -1,15 +1,26 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-  /* 기본 CSS 리셋 및 Vite 기본 스타일 */
+  /* 기본 CSS 리셋 및 전체 화면 설정 */
+  * {
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+  }
+  
   :root {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
-
     color-scheme: light dark;
-    color: rgba(255, 255, 255, 0.87);
-
+    color: #333;
+    background-color: #fff;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -21,25 +32,23 @@ const GlobalStyle = createGlobalStyle`
     color: #646cff;
     text-decoration: inherit;
   }
+  
   a:hover {
     color: #535bf2;
   }
 
   body {
-    margin: 0;
     display: flex;
-    place-items: center;
-    min-width: 320px;
+    flex-direction: column;
     min-height: 100vh;
   }
 
-  h1 {
-    font-size: 3.2em;
-    line-height: 1.1;
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
   }
 
   button {
-    border-radius: 8px;
     border: 1px solid transparent;
     padding: 0.6em 1.2em;
     font-size: 1em;
@@ -48,32 +57,12 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
     transition: border-color 0.25s;
   }
-  button:hover {
-    border-color: #646cff;
-  }
-  button:focus,
-  button:focus-visible {
-    outline: 4px auto -webkit-focus-ring-color;
-  }
 
   #root {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
-  }
-
-  @media (prefers-color-scheme: light) {
-    :root {
-      color: #213547;
-      background-color: #ffffff;
-    }
-    a:hover {
-      color: #747bff;
-    }
-    button {
-      background-color: #f9f9f9;
-    }
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
 `;
 
