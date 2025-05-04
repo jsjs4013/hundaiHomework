@@ -12,7 +12,7 @@ import { TabType } from "../../types/api/category";
 
 export default function FAQSection() {
   // 상태 관리
-  const [activeTab, setActiveTab] = useState<TabType>(TabType.USAGE);
+  const [activeTab, setActiveTab] = useState<TabType>(TabType.CONSULT);
   const [selectedCategory, setSelectedCategory] = useState<
     Category.Response[number] | null
   >(null);
