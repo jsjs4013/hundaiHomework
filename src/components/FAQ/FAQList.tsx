@@ -1,12 +1,17 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, Dispatch, SetStateAction } from "react";
 import { styled } from "styled-components";
 import { Category, Faq } from "../../types/api";
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import queryOptionsLayer from "../../queryOptions";
 import { TabType } from "../../types/api/category";
 import FAQSearch from "./FAQSearch";
+import FAQCategories from "./FAQCategories";
 
 interface Props {
+  categories: Category.Response;
+  setSelectedCategory: Dispatch<
+    SetStateAction<Category.Response[number] | null>
+  >;
   isUsage: boolean;
   activeTab: TabType;
   selectedCategory: Category.Response[number] | null;
@@ -21,12 +26,15 @@ interface FAQItemProps {
 }
 
 export default function FAQList({
+  categories,
+  setSelectedCategory,
   isUsage,
   activeTab,
   selectedCategory,
 }: Props) {
   const [question, setQuestion] = useState("");
-  const { data: faqData, refetch } = useSuspenseQuery(
+  const [isSearch, setIsSearch] = useState(false);
+  const { data: faqData, refetch } = useQuery(
     queryOptionsLayer.faq({
       tab: activeTab,
       limit: 10,
@@ -36,12 +44,17 @@ export default function FAQList({
     })
   );
 
+  useEffect(() => {
+    if (activeTab) setQuestion("");
+  }, [activeTab]);
+
   const handleChange = (query: string) => {
     setQuestion(query);
   };
 
   const handleSearch = () => {
     refetch();
+    setIsSearch(true);
   };
 
   return (
@@ -53,8 +66,19 @@ export default function FAQList({
         onSearch={handleSearch}
       />
 
+      {isSearch && (
+        <strong>검색결과 총 {faqData?.pageInfo.totalRecord}건</strong>
+      )}
+
+      {/* FAQ 카테고리 필터 컴포넌트 */}
+      <FAQCategories
+        categories={categories}
+        selectedCategory={selectedCategory}
+        onSelectCategory={setSelectedCategory}
+      />
+
       <FAQListSection>
-        {faqData.items.map((item, index) => (
+        {faqData?.items.map((item, index) => (
           <FAQItemComponent
             key={index}
             isUsage={isUsage}

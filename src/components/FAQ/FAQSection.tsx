@@ -1,11 +1,10 @@
-import { Suspense, useState } from "react";
+import { useState } from "react";
 import { useSuspenseQueries } from "@tanstack/react-query";
 import { styled } from "styled-components";
 import { queryOptionsLayer } from "../../queryOptions";
 import { Category } from "../../types/api";
 import FAQTabs from "./FAQTabs";
 import FAQHeader from "./FAQHeader";
-import FAQCategories from "./FAQCategories";
 import FAQList from "./FAQList";
 import { TabType } from "../../types/api/category";
 
@@ -43,21 +42,13 @@ export default function FAQSection() {
       {/* FAQ 탭 컴포넌트 */}
       <FAQTabs activeTab={activeTab} onTabChange={handleActiveTabChange} />
 
-      {/* FAQ 카테고리 필터 컴포넌트 */}
-      <FAQCategories
+      <FAQList
         categories={categories}
+        setSelectedCategory={setSelectedCategory}
+        isUsage={activeTab === TabType.USAGE}
+        activeTab={activeTab}
         selectedCategory={selectedCategory}
-        onSelectCategory={setSelectedCategory}
       />
-
-      {/* FAQ 리스트 컴포넌트 */}
-      <Suspense fallback={<></>}>
-        <FAQList
-          isUsage={activeTab === TabType.USAGE}
-          activeTab={activeTab}
-          selectedCategory={selectedCategory}
-        />
-      </Suspense>
     </Container>
   );
 }
