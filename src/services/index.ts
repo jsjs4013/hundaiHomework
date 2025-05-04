@@ -25,12 +25,13 @@ async function get<T>(
 export const api = {
   getCategory: ({ tab }: Category.Request) =>
     get<Category.Response>("/category", { tab }),
-  getFaq: ({ tab, limit, offset, faqCategoryID }: Faq.Request) =>
+  getFaq: ({ tab, limit, offset, faqCategoryID, question }: Faq.Request) =>
     get<Faq.Response>("/faq", {
       tab,
       limit: limit.toString(),
       offset: offset.toString(),
       faqCategoryID: faqCategoryID ?? "",
+      ...(question ? { question: encodeURIComponent(question) } : {}),
     }),
 };
 

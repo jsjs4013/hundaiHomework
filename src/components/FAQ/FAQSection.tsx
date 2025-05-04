@@ -5,7 +5,6 @@ import { queryOptionsLayer } from "../../queryOptions";
 import { Category } from "../../types/api";
 import FAQTabs from "./FAQTabs";
 import FAQHeader from "./FAQHeader";
-import FAQSearch from "./FAQSearch";
 import FAQCategories from "./FAQCategories";
 import FAQList from "./FAQList";
 import { TabType } from "../../types/api/category";
@@ -16,7 +15,6 @@ export default function FAQSection() {
   const [selectedCategory, setSelectedCategory] = useState<
     Category.Response[number] | null
   >(null);
-  const [searchQuery, setSearchQuery] = useState("");
 
   // API 데이터 가져오기
   const [usage, consult] = useSuspenseQueries({
@@ -34,13 +32,6 @@ export default function FAQSection() {
     setSelectedCategory(null);
   };
 
-  // 검색 처리 함수
-  const handleSearch = (query: string) => {
-    setSearchQuery(query);
-    // 실제 검색 로직 구현 필요
-    console.log("검색어:", query);
-  };
-
   return (
     <Container>
       {/* FAQ 헤더 컴포넌트 */}
@@ -51,9 +42,6 @@ export default function FAQSection() {
 
       {/* FAQ 탭 컴포넌트 */}
       <FAQTabs activeTab={activeTab} onTabChange={handleActiveTabChange} />
-
-      {/* FAQ 검색 컴포넌트 */}
-      <FAQSearch onSearch={handleSearch} />
 
       {/* FAQ 카테고리 필터 컴포넌트 */}
       <FAQCategories

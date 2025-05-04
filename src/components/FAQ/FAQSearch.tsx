@@ -1,15 +1,22 @@
-import { useState } from "react";
 import { styled } from "styled-components";
 
 interface FAQSearchProps {
-  onSearch: (query: string) => void;
+  question: string;
+  onChange: (query: string) => void;
+  onSearch: () => void;
 }
 
-export default function FAQSearch({ onSearch }: FAQSearchProps) {
-  const [searchQuery, setSearchQuery] = useState("");
+export default function FAQSearch({
+  question,
+  onChange,
+  onSearch,
+}: FAQSearchProps) {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(e.target.value);
+  };
 
   const handleSearch = () => {
-    onSearch(searchQuery);
+    onSearch();
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -22,8 +29,8 @@ export default function FAQSearch({ onSearch }: FAQSearchProps) {
     <SearchSection>
       <SearchInput
         placeholder="찾으시는 내용을 입력해 주세요"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
+        value={question}
+        onChange={handleChange}
         onKeyPress={handleKeyPress}
       />
       <SearchButton onClick={handleSearch}>

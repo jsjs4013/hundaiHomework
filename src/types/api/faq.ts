@@ -21,6 +21,7 @@ export type Request = {
   offset: number;
   tab: Category.TabType;
   faqCategoryID?: Category.CategoryType;
+  question?: string;
 };
 
 export type Response = {

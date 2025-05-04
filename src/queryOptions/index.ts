@@ -10,10 +10,16 @@ const categoryOptions = ({ tab }: Category.Request) =>
     queryFn: () => api.getCategory({ tab }),
   });
 
-const faqOptions = ({ limit, offset, tab, faqCategoryID }: Faq.Request) =>
+const faqOptions = ({
+  limit,
+  offset,
+  tab,
+  faqCategoryID,
+  question,
+}: Faq.Request) =>
   queryOptions<Faq.Response>({
     queryKey: [PREFIX, "faqOptions", tab, limit, offset, faqCategoryID],
-    queryFn: () => api.getFaq({ limit, offset, tab, faqCategoryID }),
+    queryFn: () => api.getFaq({ limit, offset, tab, faqCategoryID, question }),
   });
 
 export const queryOptionsLayer = {

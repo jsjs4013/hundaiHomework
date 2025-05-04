@@ -233,12 +233,16 @@ export const handlers = [
     const faqCategoryID = url.searchParams.get("faqCategoryID") as
       | string
       | null;
+    const question = (url.searchParams.get("question") as string | null)
+      ? decodeURIComponent(url.searchParams.get("question") as string)
+      : null;
 
     console.log(
       "[MSW] /api/faq requested with tab, limit, offset:",
       tab,
       limit,
-      offset
+      offset,
+      question
     );
 
     if (tab === Category.TabType.USAGE) {

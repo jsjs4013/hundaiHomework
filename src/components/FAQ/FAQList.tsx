@@ -4,6 +4,7 @@ import { Category, Faq } from "../../types/api";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import queryOptionsLayer from "../../queryOptions";
 import { TabType } from "../../types/api/category";
+import FAQSearch from "./FAQSearch";
 
 interface Props {
   isUsage: boolean;
@@ -24,28 +25,47 @@ export default function FAQList({
   activeTab,
   selectedCategory,
 }: Props) {
-  const { data: faqData } = useSuspenseQuery(
+  const [question, setQuestion] = useState("");
+  const { data: faqData, refetch } = useSuspenseQuery(
     queryOptionsLayer.faq({
       tab: activeTab,
       limit: 10,
       offset: 0,
       faqCategoryID: selectedCategory?.categoryID,
+      question,
     })
   );
 
+  const handleChange = (query: string) => {
+    setQuestion(query);
+  };
+
+  const handleSearch = () => {
+    refetch();
+  };
+
   return (
-    <FAQListSection>
-      {faqData.items.map((item, index) => (
-        <FAQItemComponent
-          key={index}
-          isUsage={isUsage}
-          category={item.categoryName}
-          subCategoryName={item.subCategoryName}
-          question={item.question}
-          answer={item.answer}
-        />
-      ))}
-    </FAQListSection>
+    <>
+      {/* FAQ 검색 컴포넌트 */}
+      <FAQSearch
+        question={question}
+        onChange={handleChange}
+        onSearch={handleSearch}
+      />
+
+      <FAQListSection>
+        {faqData.items.map((item, index) => (
+          <FAQItemComponent
+            key={index}
+            isUsage={isUsage}
+            category={item.categoryName}
+            subCategoryName={item.subCategoryName}
+            question={item.question}
+            answer={item.answer}
+          />
+        ))}
+      </FAQListSection>
+    </>
   );
 }
 
