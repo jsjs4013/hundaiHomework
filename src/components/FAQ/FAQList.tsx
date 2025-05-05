@@ -241,8 +241,4 @@ const LoadMoreButton = styled.button`
   text-align: center;
   cursor: pointer;
   transition: color 0.2s;
-
-  &:hover {
-    color: #333;
-  }
 `;
