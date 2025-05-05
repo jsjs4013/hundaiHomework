@@ -11,16 +11,31 @@ export default function FAQPage() {
       <ServiceInquirySection>
         <SectionTitle>서비스 문의</SectionTitle>
         <InquiryCardsContainer>
-          <InquiryCard>
-            <CardIcon>📄</CardIcon>
+          <InquiryCard
+            as="a"
+            href="/assets/pdf/service_proposal.pdf"
+            download="기아_비즈_서비스_제안서.pdf"
+            rel="noopener noreferrer"
+            style={{ cursor: "pointer" }}
+          >
             <CardTitle>서비스 제안서 다운로드</CardTitle>
           </InquiryCard>
-          <InquiryCard>
-            <CardIcon>✏️</CardIcon>
+          <InquiryCard
+            as="a"
+            href="https://wiblebiz.kia.com/Counsel"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ cursor: "pointer" }}
+          >
             <CardTitle>상담문의 등록하기</CardTitle>
           </InquiryCard>
-          <InquiryCard>
-            <CardIcon>💬</CardIcon>
+          <InquiryCard
+            as="a"
+            href="https://pf.kakao.com/_xfLxjdb"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ cursor: "pointer" }}
+          >
             <CardTitle>카톡으로 문의하기</CardTitle>
             <CardSubtitle>ID: 기아 비즈</CardSubtitle>
           </InquiryCard>
@@ -88,11 +103,6 @@ const InquiryCard = styled.div`
   padding: 24px;
   text-align: center;
   cursor: pointer;
-`;
-
-const CardIcon = styled.div`
-  font-size: 24px;
-  margin-bottom: 16px;
 `;
 
 const CardTitle = styled.div`
