@@ -212,27 +212,39 @@ const usageFaqs: Faq.Response = {
       question: "가입 및 이용 조건은 어떻게 되나요?",
       subCategoryName: "가입",
     },
-    {
-      answer:
-        '<p><span style="color:hsl(0, 0%, 0%);font-size:&#39;13pt&#39;;"><span style="word-break:keep-all;">아래의 조건 충족 시 기아 비즈 가입 및 이용이 가능합니다.</span></span></p><p><span style="color:hsl(0, 0%, 0%);font-size:&#39;13pt&#39;;"><span style="word-break:keep-all;">① 만 21세 이상 *단, 일부 차종에 따라 나이 기준 상이하므로 이용 전 확인 필요</span></span></p><p><span style="color:hsl(0, 0%, 0%);font-size:&#39;13pt&#39;;"><span style="word-break:keep-all;">② 취득일로부터 1년 이상 경과한 대한민국 운전면허 보유</span></span></p><p><span style="color:hsl(0, 0%, 0%);font-size:&#39;13pt&#39;;"><span style="word-break:keep-all;">③ 본인 명의의 휴대폰 보유 (가족, 타인 명의 휴대폰 불가)</span></span></p><p><span style="color:hsl(0, 0%, 0%);font-size:&#39;13pt&#39;;"><span style="word-break:keep-all;">④ 본인 명의의 신용/체크 카드 보유 (타인 명의 카드 등록 불가)</span></span></p><p><span style="color:hsl(0, 0%, 0%);font-size:&#39;13pt&#39;;"><span style="word-break:keep-all;">⑤ 가입/이용 필수 약관 동의</span></span></p>',
-      categoryName: "가입문의",
-      id: 23,
-      question: "가입 및 이용 조건은 어떻게 되나요?",
-      subCategoryName: "가입",
-    },
-    {
-      answer:
-        '<p><span style="color:hsl(0, 0%, 0%);font-size:&#39;13pt&#39;;"><span style="word-break:keep-all;">아래의 조건 충족 시 기아 비즈 가입 및 이용이 가능합니다.</span></span></p><p><span style="color:hsl(0, 0%, 0%);font-size:&#39;13pt&#39;;"><span style="word-break:keep-all;">① 만 21세 이상 *단, 일부 차종에 따라 나이 기준 상이하므로 이용 전 확인 필요</span></span></p><p><span style="color:hsl(0, 0%, 0%);font-size:&#39;13pt&#39;;"><span style="word-break:keep-all;">② 취득일로부터 1년 이상 경과한 대한민국 운전면허 보유</span></span></p><p><span style="color:hsl(0, 0%, 0%);font-size:&#39;13pt&#39;;"><span style="word-break:keep-all;">③ 본인 명의의 휴대폰 보유 (가족, 타인 명의 휴대폰 불가)</span></span></p><p><span style="color:hsl(0, 0%, 0%);font-size:&#39;13pt&#39;;"><span style="word-break:keep-all;">④ 본인 명의의 신용/체크 카드 보유 (타인 명의 카드 등록 불가)</span></span></p><p><span style="color:hsl(0, 0%, 0%);font-size:&#39;13pt&#39;;"><span style="word-break:keep-all;">⑤ 가입/이용 필수 약관 동의</span></span></p>',
-      categoryName: "가입문의",
-      id: 23,
-      question: "가입 및 이용 조건은 어떻게 되나요?",
-      subCategoryName: "가입",
-    },
   ],
   pageInfo: {
     limit: 10,
     nextOffset: 10,
     offset: 0,
+    prevOffset: 0,
+    totalRecord: 12,
+  },
+};
+
+const usageFaqsNext: Faq.Response = {
+  items: [
+    {
+      answer:
+        '<p><span style="color:hsl(0, 0%, 0%);font-size:&#39;13pt&#39;;"><span style="word-break:keep-all;">아래의 조건 충족 시 기아 비즈 가입 및 이용이 가능합니다.</span></span></p><p><span style="color:hsl(0, 0%, 0%);font-size:&#39;13pt&#39;;"><span style="word-break:keep-all;">① 만 21세 이상 *단, 일부 차종에 따라 나이 기준 상이하므로 이용 전 확인 필요</span></span></p><p><span style="color:hsl(0, 0%, 0%);font-size:&#39;13pt&#39;;"><span style="word-break:keep-all;">② 취득일로부터 1년 이상 경과한 대한민국 운전면허 보유</span></span></p><p><span style="color:hsl(0, 0%, 0%);font-size:&#39;13pt&#39;;"><span style="word-break:keep-all;">③ 본인 명의의 휴대폰 보유 (가족, 타인 명의 휴대폰 불가)</span></span></p><p><span style="color:hsl(0, 0%, 0%);font-size:&#39;13pt&#39;;"><span style="word-break:keep-all;">④ 본인 명의의 신용/체크 카드 보유 (타인 명의 카드 등록 불가)</span></span></p><p><span style="color:hsl(0, 0%, 0%);font-size:&#39;13pt&#39;;"><span style="word-break:keep-all;">⑤ 가입/이용 필수 약관 동의</span></span></p>',
+      categoryName: "가입문의",
+      id: 23,
+      question: "가입 및 이용 조건은 어떻게 되나요?",
+      subCategoryName: "가입",
+    },
+    {
+      answer:
+        '<p><span style="color:hsl(0, 0%, 0%);font-size:&#39;13pt&#39;;"><span style="word-break:keep-all;">아래의 조건 충족 시 기아 비즈 가입 및 이용이 가능합니다.</span></span></p><p><span style="color:hsl(0, 0%, 0%);font-size:&#39;13pt&#39;;"><span style="word-break:keep-all;">① 만 21세 이상 *단, 일부 차종에 따라 나이 기준 상이하므로 이용 전 확인 필요</span></span></p><p><span style="color:hsl(0, 0%, 0%);font-size:&#39;13pt&#39;;"><span style="word-break:keep-all;">② 취득일로부터 1년 이상 경과한 대한민국 운전면허 보유</span></span></p><p><span style="color:hsl(0, 0%, 0%);font-size:&#39;13pt&#39;;"><span style="word-break:keep-all;">③ 본인 명의의 휴대폰 보유 (가족, 타인 명의 휴대폰 불가)</span></span></p><p><span style="color:hsl(0, 0%, 0%);font-size:&#39;13pt&#39;;"><span style="word-break:keep-all;">④ 본인 명의의 신용/체크 카드 보유 (타인 명의 카드 등록 불가)</span></span></p><p><span style="color:hsl(0, 0%, 0%);font-size:&#39;13pt&#39;;"><span style="word-break:keep-all;">⑤ 가입/이용 필수 약관 동의</span></span></p>',
+      categoryName: "비즈니스(업무용)",
+      id: 23,
+      question: "가입 및 이용 조건은 어떻게 되나요?",
+      subCategoryName: "상품",
+    },
+  ],
+  pageInfo: {
+    limit: 10,
+    nextOffset: 10,
+    offset: 10,
     prevOffset: 0,
     totalRecord: 12,
   },
@@ -275,6 +287,7 @@ export const handlers = [
 
     if (tab === Category.TabType.USAGE) {
       if (question) return HttpResponse.json(faqQuestion);
+      if (offset === "10") return HttpResponse.json(usageFaqsNext);
       if (Category.CategoryType.SIGNUP === faqCategoryID)
         return HttpResponse.json(faqSignup);
       else if (Category.CategoryType.BUSINESS === faqCategoryID)

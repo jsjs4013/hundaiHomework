@@ -34,18 +34,40 @@ export default function FAQList({
 }: Props) {
   const [question, setQuestion] = useState("");
   const [isSearch, setIsSearch] = useState(false);
+  const [currentOffset, setCurrentOffset] = useState(0);
+  const [faqDataList, setFaqDataList] = useState<Faq.Response | undefined>();
   const { data: faqData, refetch } = useQuery(
     queryOptionsLayer.faq({
       tab: activeTab,
       limit: 10,
-      offset: 0,
+      offset: currentOffset,
       faqCategoryID: selectedCategory?.categoryID,
       question,
     })
   );
 
   useEffect(() => {
-    if (activeTab) setQuestion("");
+    if (faqData) {
+      if (currentOffset === 0) {
+        // 초기 로드 또는 새로운 검색/탭 변경 시 데이터 초기화
+        setFaqDataList(faqData);
+      } else {
+        // 더보기 버튼으로 추가 데이터 로드 시 기존 데이터에 추가
+        setFaqDataList((prev) => ({
+          ...faqData,
+          items: [...(prev?.items || []), ...faqData.items],
+        }));
+      }
+    }
+  }, [faqData, currentOffset]);
+
+  useEffect(() => {
+    if (activeTab) {
+      setQuestion("");
+      setCurrentOffset(0);
+      setIsSearch(false);
+      setFaqDataList(undefined);
+    }
   }, [activeTab]);
 
   const handleChange = (query: string) => {
@@ -53,8 +75,16 @@ export default function FAQList({
   };
 
   const handleSearch = () => {
+    setCurrentOffset(0);
+    setFaqDataList(undefined);
     refetch();
     setIsSearch(true);
+  };
+
+  const handleLoadMore = () => {
+    if (faqDataList?.pageInfo.nextOffset) {
+      setCurrentOffset(faqDataList.pageInfo.nextOffset);
+    }
   };
 
   return (
@@ -67,7 +97,7 @@ export default function FAQList({
       />
 
       {isSearch && (
-        <strong>검색결과 총 {faqData?.pageInfo.totalRecord}건</strong>
+        <strong>검색결과 총 {faqDataList?.pageInfo.totalRecord}건</strong>
       )}
 
       {/* FAQ 카테고리 필터 컴포넌트 */}
@@ -78,7 +108,7 @@ export default function FAQList({
       />
 
       <FAQListSection>
-        {faqData?.items.map((item, index) => (
+        {faqDataList?.items.map((item, index) => (
           <FAQItemComponent
             key={index}
             isUsage={isUsage}
@@ -88,6 +118,12 @@ export default function FAQList({
             answer={item.answer}
           />
         ))}
+
+        {faqDataList &&
+          faqDataList.pageInfo.nextOffset > 0 &&
+          faqDataList.items.length < faqDataList.pageInfo.totalRecord && (
+            <LoadMoreButton onClick={handleLoadMore}>+ 더보기</LoadMoreButton>
+          )}
       </FAQListSection>
     </>
   );
@@ -177,4 +213,22 @@ const FAQContent = styled.div`
   background: #f9f9f9;
   font-size: 14px;
   line-height: 1.6;
+`;
+
+const LoadMoreButton = styled.button`
+  display: block;
+  width: 100%;
+  padding: 12px 0;
+  margin: 20px 0;
+  background-color: transparent;
+  border: none;
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  cursor: pointer;
+  transition: color 0.2s;
+
+  &:hover {
+    color: #333;
+  }
 `;
