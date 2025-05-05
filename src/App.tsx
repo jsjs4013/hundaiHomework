@@ -1,5 +1,6 @@
 import { styled } from "styled-components";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import FAQPage from "./pages/FAQPage";
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
       <MainContent>
         <FAQPage />
       </MainContent>
+      <Footer />
     </AppContainer>
   );
 }
