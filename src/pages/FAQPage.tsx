@@ -47,13 +47,29 @@ export default function FAQPage() {
         <SectionTitle>이용 프로세스 안내</SectionTitle>
         <ProcessStepsContainer>
           <ProcessStep>
-            <StepIcon>👤</StepIcon>
             <StepNumber>1. 문의 등록</StepNumber>
             <StepDescription>
-              상담 문의를 등록해 주시면, 담당자가 빠르게 상담을 제공합니다.
+              상담 문의를 등록해 주시면, 담당자가 만족할 상담을 제공합니다.
             </StepDescription>
           </ProcessStep>
-          {/* 추가 프로세스 단계들... */}
+          <ProcessStep>
+            <StepNumber>2. 관리자 설정</StepNumber>
+            <StepDescription>
+              관리자 Web 접속 후 결제방식 및 회사정보를 설정합니다.
+            </StepDescription>
+          </ProcessStep>
+          <ProcessStep>
+            <StepNumber>3. 임직원 가입</StepNumber>
+            <StepDescription>
+              이용자 App에서 회원가입 후 소속 회사 인증을 진행합니다.
+            </StepDescription>
+          </ProcessStep>
+          <ProcessStep>
+            <StepNumber>4. 서비스 이용</StepNumber>
+            <StepDescription>
+              이용자 App에서 차량 예약을 하고 K존에서 바로 이용하세요!
+            </StepDescription>
+          </ProcessStep>
         </ProcessStepsContainer>
       </ProcessSection>
 
@@ -61,12 +77,22 @@ export default function FAQPage() {
       <AppDownloadSection>
         <AppDownloadTitle>기아 비즈 App 지금 만나보세요!</AppDownloadTitle>
         <AppStoreButtons>
-          <AppStoreButton>
-            <AppStoreIcon>🤖</AppStoreIcon>
+          <AppStoreButton
+            as="a"
+            href="https://play.google.com/store/apps/details?id=kor.mop.user.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ cursor: "pointer" }}
+          >
             Google Play
           </AppStoreButton>
-          <AppStoreButton>
-            <AppStoreIcon>🍎</AppStoreIcon>
+          <AppStoreButton
+            as="a"
+            href="https://apps.apple.com/kr/app/kia-biz-%EA%B8%B0%EC%95%84-%EB%B9%84%EC%A6%88/id1598065794"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ cursor: "pointer" }}
+          >
             App Store
           </AppStoreButton>
         </AppStoreButtons>
@@ -130,11 +156,6 @@ const ProcessStep = styled.div`
   text-align: center;
 `;
 
-const StepIcon = styled.div`
-  font-size: 32px;
-  margin-bottom: 16px;
-`;
-
 const StepNumber = styled.div`
   font-size: 16px;
   font-weight: bold;
@@ -175,9 +196,4 @@ const AppStoreButton = styled.button`
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
-`;
-
-const AppStoreIcon = styled.span`
-  font-size: 20px;
-  margin-right: 8px;
 `;
