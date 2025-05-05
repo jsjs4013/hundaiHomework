@@ -86,7 +86,7 @@ const faqQuestion: Faq.Response = {
     nextOffset: 10,
     offset: 0,
     prevOffset: 0,
-    totalRecord: 1,
+    totalRecord: 2,
   },
 };
 

@@ -35,6 +35,11 @@ export default function FAQList({
   const [question, setQuestion] = useState("");
   const [isSearch, setIsSearch] = useState(false);
   const [currentOffset, setCurrentOffset] = useState(0);
+
+  const [prevActiveTab, setPrevActiveTab] = useState(activeTab);
+  const [prevSelectedCategory, setPrevSelectedCategory] =
+    useState(selectedCategory);
+
   const [faqDataList, setFaqDataList] = useState<Faq.Response | undefined>();
   const { data: faqData, refetch } = useQuery(
     queryOptionsLayer.faq({
@@ -47,28 +52,38 @@ export default function FAQList({
   );
 
   useEffect(() => {
+    if (activeTab !== prevActiveTab) {
+      setPrevActiveTab(activeTab);
+      setQuestion("");
+      setIsSearch(false);
+      setCurrentOffset(0);
+      setFaqDataList(undefined);
+    }
+
+    if (selectedCategory?.categoryID !== prevSelectedCategory?.categoryID) {
+      setPrevSelectedCategory(selectedCategory);
+      setCurrentOffset(0);
+      setFaqDataList(undefined);
+    }
+
     if (faqData) {
       if (currentOffset === 0) {
-        // 초기 로드 또는 새로운 검색/탭 변경 시 데이터 초기화
         setFaqDataList(faqData);
       } else {
-        // 더보기 버튼으로 추가 데이터 로드 시 기존 데이터에 추가
         setFaqDataList((prev) => ({
           ...faqData,
           items: [...(prev?.items || []), ...faqData.items],
         }));
       }
     }
-  }, [faqData, currentOffset]);
-
-  useEffect(() => {
-    if (activeTab) {
-      setQuestion("");
-      setCurrentOffset(0);
-      setIsSearch(false);
-      setFaqDataList(undefined);
-    }
-  }, [activeTab]);
+  }, [
+    activeTab,
+    selectedCategory,
+    prevActiveTab,
+    prevSelectedCategory,
+    faqData,
+    currentOffset,
+  ]);
 
   const handleChange = (query: string) => {
     setQuestion(query);
@@ -76,7 +91,6 @@ export default function FAQList({
 
   const handleSearch = () => {
     setCurrentOffset(0);
-    setFaqDataList(undefined);
     refetch();
     setIsSearch(true);
   };
